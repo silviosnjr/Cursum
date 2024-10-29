@@ -11,6 +11,5 @@ Projeto de estudos sobre a linguagem JAVA, Spring Boot, Hibernate, Git e GitHub
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
 ## 🧑‍💻 Equipe
-## Contributors
 | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/26281840?v=4" width=115><br><sub>Silvio</sub>](https://github.com/silviosnjr) | 
 | :---: |
