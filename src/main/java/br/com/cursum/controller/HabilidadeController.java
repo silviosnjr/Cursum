@@ -28,21 +28,21 @@ public class HabilidadeController {
         return ResponseEntity.ok(habilidade);
     }
 
-    @PostMapping
-    public ResponseEntity<HabilidadeDTO> criarHabilidade(@RequestBody HabilidadeDTO habilidadeDTO) {
-        HabilidadeDTO novaHabilidade = habilidadeService.criarHabilidade(habilidadeDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novaHabilidade);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<HabilidadeDTO> atualizarHabilidade(@PathVariable Long id, @RequestBody HabilidadeDTO habilidadeDTO) {
-        HabilidadeDTO habilidadeAtualizada = habilidadeService.atualizarHabilidade(id, habilidadeDTO);
-        return ResponseEntity.ok(habilidadeAtualizada);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirHabilidade(@PathVariable Long id) {
-        habilidadeService.excluirHabilidade(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @PostMapping
+//    public ResponseEntity<HabilidadeDTO> criarHabilidade(@RequestBody HabilidadeDTO habilidadeDTO) {
+//        HabilidadeDTO novaHabilidade = habilidadeService.criarHabilidade(habilidadeDTO);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(novaHabilidade);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<HabilidadeDTO> atualizarHabilidade(@PathVariable Long id, @RequestBody HabilidadeDTO habilidadeDTO) {
+//        HabilidadeDTO habilidadeAtualizada = habilidadeService.atualizarHabilidade(id, habilidadeDTO);
+//        return ResponseEntity.ok(habilidadeAtualizada);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> excluirHabilidade(@PathVariable Long id) {
+//        habilidadeService.excluirHabilidade(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }

@@ -28,21 +28,21 @@ public class InstrutorController {
         return ResponseEntity.ok(instrutor);
     }
 
-    @PostMapping
-    public ResponseEntity<InstrutorDTO> criarInstrutor(@RequestBody InstrutorDTO instrutorDTO) {
-        InstrutorDTO novoInstrutor = instrutorService.criarInstrutor(instrutorDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoInstrutor);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<InstrutorDTO> atualizarInstrutor(@PathVariable Long id, @RequestBody InstrutorDTO instrutorDTO) {
-        InstrutorDTO instrutorAtualizado = instrutorService.atualizarInstrutor(id, instrutorDTO);
-        return ResponseEntity.ok(instrutorAtualizado);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirInstrutor(@PathVariable Long id) {
-        instrutorService.excluirInstrutor(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @PostMapping
+//    public ResponseEntity<InstrutorDTO> criarInstrutor(@RequestBody InstrutorDTO instrutorDTO) {
+//        InstrutorDTO novoInstrutor = instrutorService.criarInstrutor(instrutorDTO);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(novoInstrutor);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<InstrutorDTO> atualizarInstrutor(@PathVariable Long id, @RequestBody InstrutorDTO instrutorDTO) {
+//        InstrutorDTO instrutorAtualizado = instrutorService.atualizarInstrutor(id, instrutorDTO);
+//        return ResponseEntity.ok(instrutorAtualizado);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> excluirInstrutor(@PathVariable Long id) {
+//        instrutorService.excluirInstrutor(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }

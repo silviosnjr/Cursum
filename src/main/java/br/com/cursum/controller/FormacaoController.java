@@ -28,21 +28,21 @@ public class FormacaoController {
         return ResponseEntity.ok(formacao);
     }
 
-    @PostMapping
-    public ResponseEntity<FormacaoDTO> criarFormacao(@RequestBody FormacaoDTO formacaoDTO) {
-        FormacaoDTO novaFormacao = formacaoService.criarFormacao(formacaoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novaFormacao);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<FormacaoDTO> atualizarFormacao(@PathVariable Long id, @RequestBody FormacaoDTO formacaoDTO) {
-        FormacaoDTO formacaoAtualizada = formacaoService.atualizarFormacao(id, formacaoDTO);
-        return ResponseEntity.ok(formacaoAtualizada);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirFormacao(@PathVariable Long id) {
-        formacaoService.excluirFormacao(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @PostMapping
+//    public ResponseEntity<FormacaoDTO> criarFormacao(@RequestBody FormacaoDTO formacaoDTO) {
+//        FormacaoDTO novaFormacao = formacaoService.criarFormacao(formacaoDTO);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(novaFormacao);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<FormacaoDTO> atualizarFormacao(@PathVariable Long id, @RequestBody FormacaoDTO formacaoDTO) {
+//        FormacaoDTO formacaoAtualizada = formacaoService.atualizarFormacao(id, formacaoDTO);
+//        return ResponseEntity.ok(formacaoAtualizada);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> excluirFormacao(@PathVariable Long id) {
+//        formacaoService.excluirFormacao(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }

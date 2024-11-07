@@ -28,21 +28,21 @@ public class AulaController {
         return ResponseEntity.ok(aula);
     }
 
-    @PostMapping
-    public ResponseEntity<AulaDTO> criarAula(@RequestBody AulaDTO aulaDTO) {
-        AulaDTO novaAula = aulaService.criarAula(aulaDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novaAula);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<AulaDTO> atualizarAula(@PathVariable Long id, @RequestBody AulaDTO aulaDTO) {
-        AulaDTO aulaAtualizada = aulaService.atualizarAula(id, aulaDTO);
-        return ResponseEntity.ok(aulaAtualizada);
-    }
-
-     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirAula(@PathVariable Long id) {
-        aulaService.excluirAula(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @PostMapping
+//    public ResponseEntity<AulaDTO> criarAula(@RequestBody AulaDTO aulaDTO) {
+//        AulaDTO novaAula = aulaService.criarAula(aulaDTO);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(novaAula);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<AulaDTO> atualizarAula(@PathVariable Long id, @RequestBody AulaDTO aulaDTO) {
+//        AulaDTO aulaAtualizada = aulaService.atualizarAula(id, aulaDTO);
+//        return ResponseEntity.ok(aulaAtualizada);
+//    }
+//
+//     @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> excluirAula(@PathVariable Long id) {
+//        aulaService.excluirAula(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }

@@ -28,21 +28,21 @@ public class AtividadeController {
         return ResponseEntity.ok(atividade);
     }
 
-    @PostMapping
-    public ResponseEntity<AtividadeDTO> criarAtividade(@RequestBody AtividadeDTO atividadeDTO) {
-        AtividadeDTO novaAtividade = atividadeService.criarAtividade(atividadeDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novaAtividade);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<AtividadeDTO> atualizarAtividade(@PathVariable Long id, @RequestBody AtividadeDTO atividadeDTO) {
-        AtividadeDTO atividadeAtualizada = atividadeService.atualizarAtividade(id, atividadeDTO);
-        return ResponseEntity.ok(atividadeAtualizada);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirAtividade(@PathVariable Long id) {
-        atividadeService.excluirAtividade(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @PostMapping
+//    public ResponseEntity<AtividadeDTO> criarAtividade(@RequestBody AtividadeDTO atividadeDTO) {
+//        AtividadeDTO novaAtividade = atividadeService.criarAtividade(atividadeDTO);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(novaAtividade);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<AtividadeDTO> atualizarAtividade(@PathVariable Long id, @RequestBody AtividadeDTO atividadeDTO) {
+//        AtividadeDTO atividadeAtualizada = atividadeService.atualizarAtividade(id, atividadeDTO);
+//        return ResponseEntity.ok(atividadeAtualizada);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> excluirAtividade(@PathVariable Long id) {
+//        atividadeService.excluirAtividade(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }

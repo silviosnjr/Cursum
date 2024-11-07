@@ -27,22 +27,22 @@ public class CursoController {
         CursoDTO curso = cursoService.buscarPorId(id);
         return ResponseEntity.ok(curso);
     }
-
-    @PostMapping
-    public ResponseEntity<CursoDTO> criarCurso(@RequestBody CursoDTO cursoDTO) {
-        CursoDTO novoCurso = cursoService.criarCurso(cursoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoCurso);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<CursoDTO> atualizarCurso(@PathVariable Long id, @RequestBody CursoDTO cursoDTO) {
-        CursoDTO cursoAtualizado = cursoService.atualizarCurso(id, cursoDTO);
-        return ResponseEntity.ok(cursoAtualizado);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirCurso(@PathVariable Long id) {
-        cursoService.excluirCurso(id);
-        return ResponseEntity.noContent().build();
-    }
+//
+//    @PostMapping
+//    public ResponseEntity<CursoDTO> criarCurso(@RequestBody CursoDTO cursoDTO) {
+//        CursoDTO novoCurso = cursoService.criarCurso(cursoDTO);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(novoCurso);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<CursoDTO> atualizarCurso(@PathVariable Long id, @RequestBody CursoDTO cursoDTO) {
+//        CursoDTO cursoAtualizado = cursoService.atualizarCurso(id, cursoDTO);
+//        return ResponseEntity.ok(cursoAtualizado);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> excluirCurso(@PathVariable Long id) {
+//        cursoService.excluirCurso(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }
