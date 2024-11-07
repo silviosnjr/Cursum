@@ -1,9 +1,7 @@
 package br.com.cursum.model;
 
+import br.com.cursum.api.DadosAtividade;
 import jakarta.persistence.*;
-
-import java.time.format.DateTimeFormatter;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "atividades")
@@ -16,14 +14,7 @@ public class Atividade {
     private AtividadeTipo tipo;
     @ManyToOne(fetch = FetchType.LAZY)
     private Aula aula;
-    private String idApi;
-
-    public Atividade(DadosAtividade dadosAtividade) {
-        this.numSequencia = Integer.valueOf(dadosAtividade.numSequencia());
-        this.titulo = dadosAtividade.titulo();
-        this.tipo = AtividadeTipo.fromString(dadosAtividade.tipo());
-        this.idApi = dadosAtividade.idApi();
-    }
+    //private String idApi;
 
     public Atividade(){}
 
@@ -67,13 +58,13 @@ public class Atividade {
         this.aula = aula;
     }
 
-    public String getIdApi() {
+    /*public String getIdApi() {
         return idApi;
-    }
+    }*/
 
-    public void setIdApi(String idApi) {
+   /* public void setIdApi(String idApi) {
         this.idApi = idApi;
-    }
+    }*/
 
     @Override
     public String toString() {

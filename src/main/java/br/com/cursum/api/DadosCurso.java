@@ -1,4 +1,4 @@
-package br.com.cursum.model;
+package br.com.cursum.api;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -12,7 +12,7 @@ public record DadosCurso (
         @JsonAlias("Escola") String escola,
         @JsonAlias("Habilidades") String habilidades,
         @JsonAlias("Instrutor") String instrutores,
-        @JsonAlias("Avaliacao")  String avaliacao,
+        @JsonAlias("Avaliacao") String avaliacao,
         @JsonAlias("id") String idApi) {
 
     @Override

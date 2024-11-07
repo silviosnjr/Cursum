@@ -1,4 +1,4 @@
-package br.com.cursum.model;
+package br.com.cursum.api;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

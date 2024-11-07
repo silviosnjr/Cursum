@@ -1,11 +1,10 @@
 package br.com.cursum.model;
 
+import br.com.cursum.api.DadosInstrutor;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "instrutores")

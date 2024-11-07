@@ -1,5 +1,6 @@
 package br.com.cursum.model;
 
+import br.com.cursum.dto.CursoDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,7 +15,8 @@ public class Habilidade {
 
     public Habilidade(){};
 
-    public Habilidade(Curso curso, String descricao){
+    public Habilidade(Long id, Curso curso, String descricao){
+        this.id = id;
         this.descricao = descricao;
         this.curso = curso;
     }

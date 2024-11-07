@@ -1,10 +1,10 @@
 package br.com.cursum.model;
 
+import br.com.cursum.api.DadosAula;
+import br.com.cursum.dto.AtividadeDTO;
+import br.com.cursum.dto.AulaDTO;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,16 +20,9 @@ public class Aula {
     private String duracao;
     @ManyToOne(fetch = FetchType.LAZY)
     private Curso curso;
-    @OneToMany(mappedBy = "aula", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "aula", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Atividade> atividades = new ArrayList<>();
-    private String idApi;
-
-    public Aula(DadosAula dadosAula) {
-        this.titulo = dadosAula.titulo();
-        this.numSequencia = Integer.valueOf(dadosAula.numSequencia());
-        this.duracao = dadosAula.duracao();
-        this.idApi = dadosAula.idApi();
-    }
+    //private String idApi;
 
     public Aula(){}
 
@@ -81,12 +74,15 @@ public class Aula {
         this.atividades = atividades;
     }
 
-    public String getIdApi() {
-        return idApi;
-    }
-
-    public void setIdApi(String idApi) {
-        this.idApi = idApi;
+    public List<AtividadeDTO> toAtividadeDTOList() {
+        return this.atividades.stream()
+                .map(atividade -> new AtividadeDTO(
+                        atividade.getId(),
+                        atividade.getNumSequencia(),
+                        atividade.getTitulo(),
+                        atividade.getTipo().getDescricao(),
+                        atividade.getAula().getId()))
+                .collect(Collectors.toList());
     }
 
     @Override

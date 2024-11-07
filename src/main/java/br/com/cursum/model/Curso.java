@@ -6,6 +6,10 @@ import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import br.com.cursum.api.DadosCurso;
+import br.com.cursum.dto.AulaDTO;
+import br.com.cursum.dto.HabilidadeDTO;
+import br.com.cursum.dto.InstrutorDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,13 +24,12 @@ public class Curso {
     private String icone;
     @Enumerated(EnumType.STRING)
     private Escola escola;
-    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Habilidade> habilidades = new ArrayList<>();
     private Double avaliacao;
-    private String idApi;
-    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //private String idApi;
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Aula> aulas = new ArrayList<>();
-
     @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(
             name = "instrutor_curso",
@@ -34,44 +37,11 @@ public class Curso {
             inverseJoinColumns = { @JoinColumn(name = "instrutor_id") }
     )
     private List<Instrutor> instrutores = new ArrayList<>();
-
     @ManyToMany(mappedBy = "cursos", cascade = {CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<Formacao> formacoes = new ArrayList<>();
 
     @Deprecated
     public Curso(){};
-
-    public Curso(DadosCurso dadosCurso) {
-        this.idApi = dadosCurso.idApi();
-        this.nome = dadosCurso.nome();
-        this.duracao = dadosCurso.duracao();
-        this.icone = dadosCurso.icone();
-        this.escola = Escola.fromString(dadosCurso.escola().split(",")[0].trim());
-
-        this.habilidades = new ArrayList<>();
-        if (dadosCurso.habilidades() != null && ! dadosCurso.habilidades().isEmpty()) {
-            String[] habilidadesArray = dadosCurso.habilidades().split(",");
-            for (String habilidade : habilidadesArray) {
-                this.habilidades.add(new Habilidade(this, habilidade.trim()));
-            }
-        }
-        /*this.habilidades = Arrays.asList(dadosCurso.habilidades().split(","))
-                .stream()
-                .map(String::trim)  // Remove espaços extras ao redor de cada habilidade
-                .collect(Collectors.toList());*/
-        try {
-            this.dataCriacao = LocalDate.parse(dadosCurso.dataCriacao());
-        } catch (DateTimeParseException ex) {
-            this.dataCriacao = null;
-        }
-
-        try {
-            this.avaliacao = Double.valueOf(dadosCurso.avaliacao());
-        } catch (NumberFormatException ex) {
-            this.avaliacao = 0.0;
-        }
-        //OptionalDouble.of(Double.valueOf(dadosCurso.avaliacao())).orElse(0);
-    }
 
     public Long getId() {
         return id;
@@ -125,6 +95,18 @@ public class Curso {
         return habilidades;
     }
 
+    public String getHabilidadesToString(){
+        return habilidades.stream()
+                .map(Habilidade::getDescricao) // Mapeia para obter as descrições
+                .collect(Collectors.joining(", "));
+    }
+
+    public List<HabilidadeDTO> toHabilidadeDTOList() {
+        return this.habilidades.stream()
+                .map(habilidade -> new HabilidadeDTO(habilidade.getId(), habilidade.getDescricao(), this.id))
+                .collect(Collectors.toList());
+    }
+
     public void setHabilidades(List<Habilidade> habilidades) {
         this.habilidades = habilidades;
     }
@@ -137,16 +119,22 @@ public class Curso {
         this.avaliacao = avaliacao;
     }
 
-    public String getIdApi() {
+    /*public String getIdApi() {
         return idApi;
-    }
+    }*/
 
-    public void setIdApi(String idApi) {
+   /* public void setIdApi(String idApi) {
         this.idApi = idApi;
-    }
+    }*/
 
     public List<Instrutor> getInstrutores() {
         return instrutores;
+    }
+
+    public List<InstrutorDTO> toInstrutorDTOList() {
+        return this.instrutores.stream()
+                .map(instrutor -> new InstrutorDTO(instrutor.getId(), instrutor.getNome(), instrutor.getDescricao(), null))
+                .collect(Collectors.toList());
     }
 
     public void setInstrutores(List<Instrutor> instrutores) {
@@ -159,6 +147,17 @@ public class Curso {
 
     public void setAulas(List<Aula> aulas) {
         this.aulas = aulas;
+    }
+
+    public List<AulaDTO> toAulaDTOList() {
+        return this.aulas.stream()
+                .map(aula -> new AulaDTO(aula.getId(),
+                                         aula.getTitulo(),
+                                         aula.getNumSequencia(),
+                                         aula.getDuracao(),
+                                         aula.getCurso().getId(),
+                                         aula.toAtividadeDTOList()))
+                .collect(Collectors.toList());
     }
 
     public void resumo(){

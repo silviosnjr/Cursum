@@ -40,4 +40,5 @@ public enum Escola {
         }
         throw new IllegalArgumentException("Nenhuma escola encontrada para a string fornecida: " + text);
     }
+
 }

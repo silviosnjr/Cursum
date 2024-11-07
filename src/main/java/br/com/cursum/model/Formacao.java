@@ -1,9 +1,13 @@
 package br.com.cursum.model;
 
+import br.com.cursum.dto.AulaDTO;
+import br.com.cursum.dto.CursoDTO;
 import jakarta.persistence.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "formacoes")
@@ -44,5 +48,22 @@ public class Formacao {
 
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
+    }
+
+    public List<CursoDTO> toCursoDTOList() {
+        DateTimeFormatter dataFt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return this.cursos.stream()
+                .map(curso -> new CursoDTO(
+                        curso.getId(),
+                        curso.getNome(),
+                        curso.getDataCriacao() != null ? curso.getDataCriacao().format(dataFt) : "Data indisponível",
+                        curso.getDuracao(),
+                        curso.getIcone(),
+                        curso.getAvaliacao(),
+                        curso.getEscola().toString(),
+                        curso.toHabilidadeDTOList(),
+                        curso.toInstrutorDTOList(),
+                        curso.toAulaDTOList()))
+                .collect(Collectors.toList());
     }
 }
